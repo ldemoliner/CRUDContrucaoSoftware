@@ -22,22 +22,22 @@ function addUnique(schema_name, table_name, field_name) {
   return `ALTER TABLE \`${schema_name}\`.\`${table_name}\` ADD UNIQUE (${field_name});\n`
 }
 
-function generateInsert(table_name, dict) {
+const generateInsert = (table_name, dict) => {
     return `INSERT INTO ${table_name} (${Object.keys(dict)}) VALUES(${Object.values(dict).map(x=>`\`${x}\``)});\n`
 }
 
-function generateDelete(table_name,dict) {
+const generateDelete = (table_name,dict) => {
     return `DELETE FROM ${table_name} WHERE ${Object.keys(dict)} = ${Object.values(dict)} ;\n`
 }
 
-function generateSelect(table_name,dict) {
+const generateSelect = (table_name,dict) => {
     if(!dict)
         return `SELECT * FROM ${table_name};\n`
     else
         return `SELECT ${dict} FROM ${table_name};\n`
 }
 
-function generateUpdate(table_name,dict,condition) {
+const generateUpdate = (table_name,dict,condition) => {
     return `UPDATE ${table_name} SET ${Object.entries(dict).map(([key,value])=>`${key} = \`${value}\``)} where ${Object.entries(condition).map(([key,value])=>`${key} = ${value}`)};\n`
 }
 
@@ -49,7 +49,7 @@ function translateTypes(type) {
   }
 }
 
-function buildScript(json_obj) {
+const buildScript = (json_obj)  =>{
   let creation = ""
   for(let schema in json_obj) {
     creation += createSchema(schema)
@@ -85,3 +85,5 @@ function buildScript(json_obj) {
 // json = JSON.parse(json)
 
 // console.log(buildScript(json));
+
+export default {generateDelete,generateInsert,generateSelect,generateUpdate,buildScript}
