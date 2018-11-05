@@ -1,0 +1,23 @@
+{
+  "name": "crud_construcao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldemoliner/CRUDContrucaoSoftware.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldemoliner/CRUDContrucaoSoftware/issues"
+  },
+  "homepage": "https://github.com/ldemoliner/CRUDContrucaoSoftware#readme"
+}
