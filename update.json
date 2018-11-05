@@ -1,0 +1,9 @@
+{
+  "table": "pedido",
+  "values": {
+    "nome": "teste2"
+  },
+  "condition": {
+    "numero": 1
+  }
+}

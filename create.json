@@ -1,0 +1,8 @@
+{
+  "table": "pedido",
+  "values": {
+    "numero": "1",
+    "data": "2018-03-03",
+    "nome": "teste"
+  }
+}
