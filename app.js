@@ -20,6 +20,29 @@ function addUnique(table_name, field_name) {
   return `ALTER TABLE ${table_name} ADD UNIQUE (${field_name});\n`
 }
 
+function generateInsert(table_name, dict) {
+    return `INSERT INTO ${table_name} (${Object.keys(dict)}) VALUES(${Object.values(dict).map(x=>`\`${x}\``)});\n`
+}
+
+function generateDelete(table_name,dict) {
+    return `DELETE FROM ${table_name} WHERE ${Object.keys(dict)} = ${Object.values(dict)} ;\n`
+}
+
+function generateSelect(table_name,dict) {
+    if(!dict)
+        return `SELECT * FROM ${table_name};\n`
+    else
+        return `SELECT ${dict} FROM ${table_name};\n`
+}
+
+function generateUpdate(table_name,dict,condition) {
+    return `UPDATE ${table_name} SET ${Object.entries(dict).map(x=>`${x.key} = ${x.value}`)} where ${Object.entries(condition).map(x=>`${x.key} = ${x.value}`)};\n`
+}
+
+function generateUpdate(table_name,dict,condition) {
+    return `UPDATE ${table_name} SET ${Object.entries(dict).map(([key,value])=>`${key} = \`${value}\``)} where ${Object.entries(condition).map(([key,value])=>`${key} = ${value}`)};\n`
+}
+
 function translateTypes(type) {
   switch(type) {
     case 'number': return 'INT()'
@@ -47,7 +70,6 @@ for(let p in json) {
         break
 
       case 'relations':
-        if()
         for(let rel of json[p][field]) {
           console.log('----------------------');
           console.log(rel);
