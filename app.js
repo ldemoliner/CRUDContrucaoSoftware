@@ -86,4 +86,4 @@ const buildScript = (json_obj)  =>{
 
 // console.log(buildScript(json));
 
-export default {generateDelete,generateInsert,generateSelect,generateUpdate,buildScript}
+export default { generateDelete,generateInsert,generateSelect,generateUpdate,buildScript }
