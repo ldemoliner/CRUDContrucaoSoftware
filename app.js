@@ -47,10 +47,7 @@ for(let p in json) {
         break
 
       case 'relations':
-        if()
         for(let rel of json[p][field]) {
-          console.log('----------------------');
-          console.log(rel);
           creation += addForeignKey(p, rel.key, rel.table, rel.key)
         }
         break
@@ -62,9 +59,3 @@ for(let p in json) {
 }
 
 console.log(creation);
-
-// for(let o of json) {
-//  console.log(o)
-// }
-
-// function insertInto(table_name, )

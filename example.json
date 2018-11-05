@@ -21,8 +21,8 @@
     "quantidade": "number",
     "pk": ["numbero", "codigo"],
     "relations": [
-      { "table": "pedido", "type": "one", "key": "numero" },
-      { "table": "produto", "type": "one", "key": "codigo" }
+      { "table": "pedido", "key": "numero" },
+      { "table": "produto", "key": "codigo" }
     ]
   }
 }
