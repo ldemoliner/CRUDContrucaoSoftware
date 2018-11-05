@@ -1,23 +1,27 @@
 const fs = require("fs")
 
-function createTable(table_name) {
-  return `CREATE TABLE ${table_name};\n`
+function createSchema(schema_name) {
+  return `CREATE SCHEMA ${schema_name}\n`
 }
 
-function addField(table_name, field_name, field_type) {
-  return `ALTER TABLE ${table_name} ADD ${field_name} ${field_type};\n`
+function createTable(schema_name, table_name) {
+  return `CREATE TABLE \`${schema_name}\`.\`${table_name}\`;\n`
 }
 
-function addForeignKey(table_name, field_name, other_table_name, other_table_field) {
-  return `ALTER TABLE ${table_name} ADD FOREIGN KEY ${field_name} REFERENCES ${other_table_name}(${other_table_field});\n`
+function addField(schema_name, table_name, field_name, field_type) {
+  return `ALTER TABLE \`${schema_name}\`.\`${table_name}\` ADD ${field_name} ${field_type};\n`
 }
 
-function addPrimaryKey(table_name, field_names) {
- return `ALTER TABLE ${table_name} ADD PRIMARY KEY (${field_names.toString()});\n`
+function addForeignKey(schema_name, table_name, field_name, other_table_name, other_table_field) {
+  return `ALTER TABLE \`${schema_name}\`.\`${table_name}\` ADD FOREIGN KEY ${field_name} REFERENCES \`${schema_name}\`.\`${other_table_name}\`(${other_table_field});\n`
 }
 
-function addUnique(table_name, field_name) {
-  return `ALTER TABLE ${table_name} ADD UNIQUE (${field_name});\n`
+function addPrimaryKey(schema_name, table_name, field_names) {
+ return `ALTER TABLE \`${schema_name}\`.\`${table_name}\` ADD PRIMARY KEY (${field_names.toString()});\n`
+}
+
+function addUnique(schema_name, table_name, field_name) {
+  return `ALTER TABLE \`${schema_name}\`.\`${table_name}\` ADD UNIQUE (${field_name});\n`
 }
 
 function generateInsert(table_name, dict) {
@@ -33,10 +37,6 @@ function generateSelect(table_name,dict) {
         return `SELECT * FROM ${table_name};\n`
     else
         return `SELECT ${dict} FROM ${table_name};\n`
-}
-
-function generateUpdate(table_name,dict,condition) {
-    return `UPDATE ${table_name} SET ${Object.entries(dict).map(x=>`${x.key} = ${x.value}`)} where ${Object.entries(condition).map(x=>`${x.key} = ${x.value}`)};\n`
 }
 
 function generateUpdate(table_name,dict,condition) {
@@ -58,35 +58,30 @@ json = JSON.parse(json)
 console.log(json)
 
 let creation = ""
-for(let p in json) {
-  console.log(p);
-  console.log(json[p]);
-  creation += createTable(p);
-  for(let field in json[p]) {
-    console.log(field);
-    switch(field) {
-      case 'pk':
-        creation += addPrimaryKey(p, json[p][field])
-        break
-
-      case 'relations':
-        for(let rel of json[p][field]) {
-          console.log('----------------------');
-          console.log(rel);
-          creation += addForeignKey(p, rel.key, rel.table, rel.key)
+for(let schema in json) {
+  creation += createSchema(schema)
+  for(let table in json[schema]) {
+    console.log(table);
+    console.log(json[schema][table]);
+    creation += createTable(schema, table);
+    for(let field in json[schema][table]) {
+      console.log(field);
+      switch(field) {
+        case 'pk':
+          creation += addPrimaryKey(schema, table, json[schema][table][field])
+          break
+  
+        case 'relations':
+          for(let rel of json[schema][table][field]) {
+            creation += addForeignKey(schema, table, rel.key, rel.table, rel.key)
+          }
+          break
+        
+        default:
+          creation += addField(schema, table, field, translateTypes(json[schema][table][field]))
         }
-        break
-      
-      default:
-        creation += addField(p, field, translateTypes(json[p][field]))
-      }
+    }
   }
 }
 
 console.log(creation);
-
-// for(let o of json) {
-//  console.log(o)
-// }
-
-// function insertInto(table_name, )
