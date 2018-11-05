@@ -1,0 +1,28 @@
+{
+  "pedido": {
+    "numero": "number",
+    "data": "date",
+    "nome": "string",
+    "pk": ["numero"],
+    "relations": []
+  },
+
+  "produto": {
+    "codigo": "number",
+    "descricao": "string",
+    "preco": "number",
+    "pk": ["codigo"],
+    "relations": []
+  },
+
+  "pedido_produto": {
+    "numero": "number",
+    "codigo": "number",
+    "quantidade": "number",
+    "pk": ["numbero", "codigo"],
+    "relations": [
+      { "table": "pedido", "type": "one", "key": "numero" },
+      { "table": "produto", "type": "one", "key": "codigo" }
+    ]
+  }
+}
