@@ -110,6 +110,7 @@ Update
 			  }
 			}
 Delete
+
 	config example :
 			{
 			  "host": "localhost",
