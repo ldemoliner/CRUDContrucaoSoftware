@@ -21,6 +21,8 @@ StartDB
 			  "password": "senha",
 			  "database": "vendas"
 			}
+			
+			
 
 	db model example:
 
@@ -62,6 +64,8 @@ Create
 			  "password": "senha",
 			  "database": "vendas"
 			}
+			
+			
 
 	json example:
 			{
@@ -84,6 +88,8 @@ Read
 			  "password": "senha",
 			  "database": "vendas"
 			}
+			
+			
 	json example:
 			{
 			  "table": "pedido",
@@ -98,6 +104,8 @@ Update
 			  "password": "senha",
 			  "database": "vendas"
 			}
+			
+			
 	json example:
 	
 			{
@@ -118,6 +126,8 @@ Delete
 			  "password": "senha",
 			  "database": "vendas"
 			}
+			
+			
 	json example:
 	
 			{
