@@ -53,6 +53,7 @@ StartDB
 			  }
 
 Create 
+
 	
 	config example :
 			{
@@ -74,6 +75,7 @@ Create
 
 
 Read 
+
 	
 	config example :
 			{
@@ -88,6 +90,7 @@ Read
 			  "values": ["numero", "data", "nome"]
 			}
 Update
+
 	config example :
 			{
 			  "host": "localhost",
