@@ -1,4 +1,4 @@
-{ StartDB, Create, Read, Update, Delete }
+# StartDB, Create, Read, Update, Delete *
 
 StartdDB(config:database access config file,db:database model description):void
 
@@ -12,7 +12,7 @@ Delete(config:database access config file,file:json with table name and conditio
 
 
 
-StartDB 
+## StartDB 
 
 	config example :
 			{
@@ -54,7 +54,7 @@ StartDB
 			    }
 			  }
 
-Create 
+## Create 
 
 	
 	config example :
@@ -78,7 +78,7 @@ Create
 			}
 
 
-Read 
+## Read 
 
 	
 	config example :
@@ -95,7 +95,7 @@ Read
 			  "table": "pedido",
 			  "values": ["numero", "data", "nome"]
 			}
-Update
+## Update
 
 	config example :
 			{
@@ -117,7 +117,7 @@ Update
 			    "numero": 1
 			  }
 			}
-Delete
+## Delete
 
 	config example :
 			{
