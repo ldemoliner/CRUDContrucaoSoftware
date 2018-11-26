@@ -99,5 +99,5 @@ const buildScript = (json_obj) => {
 
 // console.log(buildScript(json));
 
-module.exports = { generateDelete, generateInsert, generateSelect, generateUpdate, buildScript }
+module.exports = { generateDelete, generateInsert, generateSelect, generateUpdate, buildScript,createSchema,createTable,addField,addForeignKey,addPrimaryKey,addForeignKey,addUnique }
 
